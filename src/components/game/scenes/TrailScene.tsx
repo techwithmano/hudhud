@@ -11,10 +11,10 @@ type TrailSceneProps = {
 };
 
 const memories = [
-  { id: 1, title: "A Foundation of Laughter", content: "For every time we've laughed so hard we couldn't breathe. This journey is built on the pure, unfiltered joy you bring into my life." },
-  { id: 2, title: "A Shelter of Kindness", content: "For every moment your kindness was a safe harbor. You make the world a gentler place just by being in it." },
-  { id: 3, title: "A Universe of Secrets", content: "For all our inside jokes and every shared look that says more than words ever could. Our little world is my favorite place to be." },
-  { id: 4, title: "A Sky of Promises", content: "For all the adventures that still await us. This isn't the end of the path, just the beginning of our next beautiful chapter." },
+  { id: 1, title: "Our Laughter", content: "For all the times we've laughed until it hurt. You bring so much joy into my life." },
+  { id: 2, title: "Your Kindness", content: "For all the times you've been so kind to me. You make the world a better place." },
+  { id: 3, title: "Our Secrets", content: "For our inside jokes and all the secrets we share. I love the little world we have together." },
+  { id: 4, title: "Our Future", content: "For all the fun things we still have to do. This is just the start of our next adventure together." },
 ];
 
 export default function TrailScene({ onComplete }: TrailSceneProps) {
@@ -38,8 +38,8 @@ export default function TrailScene({ onComplete }: TrailSceneProps) {
   return (
     <div className="relative w-full h-full bg-gradient-to-b from-purple-100 to-background overflow-y-auto">
       <div className="sticky top-0 z-10 bg-gradient-to-b from-purple-100 via-purple-100/80 to-transparent pt-8 pb-4 text-center backdrop-blur-sm">
-        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline inline-block">The Path of Unforgettable Steps</p>
-        <p className="mt-2 text-foreground/80 text-sm">Tap each step of our journey to unlock the memory within.</p>
+        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline inline-block">A Path of Our Memories</p>
+        <p className="mt-2 text-foreground/80 text-sm">Tap each step to unlock a memory.</p>
       </div>
 
       <div className="flex flex-col items-center gap-24 py-16 px-4 min-h-full">
@@ -90,7 +90,7 @@ export default function TrailScene({ onComplete }: TrailSceneProps) {
           className="sticky bottom-0 flex justify-center py-8 bg-gradient-to-t from-background to-transparent"
         >
           <Button onClick={() => { onComplete(); }} size="lg" className="font-bold">
-            Let's Connect Our Story <Sparkles className="ml-2" />
+            Connect Our Story <Sparkles className="ml-2" />
           </Button>
         </motion.div>
       )}

@@ -23,25 +23,25 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
         <div className="max-h-[80vh] overflow-y-auto text-left text-foreground font-body">
             <h2 className="text-3xl font-bold mb-4 text-primary text-center">To My Nooni 🌷</h2>
             <p className="text-lg leading-relaxed">
-                If you’re reading this, then you’ve walked through a world built just for you.
-                Every flower that bloomed, every star you collected — it was all made to remind you of something simple, but so true:
-                <strong> You are loved beyond words.</strong>
+                You just walked through a little world I made just for you. 
+                Everything you saw, every star you collected, was to remind you of one simple thing:
+                <strong> You are so, so loved.</strong>
             </p>
             <p className="mt-4 text-lg leading-relaxed">
-                You are more than a best friend. You’re my calm, my chaos, my comfort, my favorite laugh.
-                I made this game because I couldn’t just say how much you mean to me — I had to show you.
+                You're more than my best friend. You're the person who makes me feel calm, who I can be silly with, and who always makes me laugh.
+                I made this little game because just saying how much you mean to me isn't enough. I wanted to show you.
             </p>
             <p className="mt-4 text-lg leading-relaxed">
-                Every corner of this place was shaped by the way you make the real world feel softer.
-                I don’t know how you do it, but when you’re near, even the worst days feel okay.
+                I made this place feel soft and kind, just like you make the real world feel to me. 
+                I don’t know how you do it, but when you're around, even the bad days feel better.
             </p>
             <p className="mt-4 text-lg leading-relaxed">
                 You’ve been there for me when I didn’t even ask. You’ve made me feel seen. You’ve made me feel safe.
-                And I swear, Nooni, if I could build you a thousand gardens like this, I would — just to watch you smile as you walk through them.
+                And honestly, Nooni, if I could build you a thousand little worlds like this, I would. Just to see you smile.
             </p>
             <p className="mt-4 text-lg leading-relaxed">
-                So when the screen goes dark and this little world fades, remember:
-                <strong> You are magic. You are light. You are my forever friend.</strong>
+                So when this little game is over, please remember:
+                <strong> You are wonderful. You are a bright light. You are my forever friend.</strong>
             </p>
             <p className="mt-6 text-right text-lg">— From me, always 💙</p>
         </div>

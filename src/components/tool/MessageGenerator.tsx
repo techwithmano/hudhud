@@ -35,15 +35,15 @@ export default function MessageGenerator() {
   useEffect(() => {
     if (state.success && state.data) {
       toast({
-        title: 'Draft Generated!',
-        description: 'Your personalized message is ready below.',
+        title: 'Your Draft is Ready!',
+        description: 'Your special message is ready below.',
       });
       if(resultRef.current) {
         resultRef.current.value = state.data.draftMessage;
       }
       formRef.current?.reset();
     } else if (!state.success && state.error) {
-       const errorMessage = state.error._form ? state.error._form[0] : "Please check your inputs.";
+       const errorMessage = state.error._form ? state.error._form[0] : "Please check what you wrote.";
        toast({
         variant: 'destructive',
         title: 'Oops! Something went wrong.',
@@ -67,19 +67,19 @@ export default function MessageGenerator() {
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="messageContext">A Memory or Feeling</Label>
+        <Label htmlFor="messageContext">A Memory or Thought</Label>
         <Textarea
           id="messageContext"
           name="messageContext"
-          placeholder="Share a memory, an inside joke, or a feeling... e.g., 'Remember that time we...'"
+          placeholder="Share a memory, an inside joke, or what you're feeling... e.g., 'Remember when we...'"
           rows={3}
           required
         />
         {state?.error?.messageContext && <p className="text-sm text-destructive">{state.error.messageContext[0]}</p>}
       </div>
        <div className="space-y-2">
-          <Label htmlFor="admiredQuality">A Quality You Admire</Label>
-          <Input id="admiredQuality" name="admiredQuality" placeholder="e.g., Her incredible kindness, her hilarious laugh" required />
+          <Label htmlFor="admiredQuality">Something You Admire About Her</Label>
+          <Input id="admiredQuality" name="admiredQuality" placeholder="e.g., Her kindness, her great laugh" required />
           {state?.error?.admiredQuality && <p className="text-sm text-destructive">{state.error.admiredQuality[0]}</p>}
       </div>
       <SubmitButton />

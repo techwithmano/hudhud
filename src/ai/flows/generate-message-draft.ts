@@ -33,20 +33,20 @@ const prompt = ai.definePrompt({
   name: 'generateMessageDraftPrompt',
   input: {schema: GenerateMessageDraftInputSchema},
   output: {schema: GenerateMessageDraftOutputSchema},
-  prompt: `You are a poetic and heartfelt AI assistant, a master of weaving words into beautiful, affectionate messages.
-Your purpose is to help {{senderName}} craft a truly unique and memorable note for their cherished friend, {{hudaNickname}}.
+  prompt: `You are a friendly AI assistant who is good at writing sweet and simple messages.
+Your goal is to help {{senderName}} write a special message for their good friend, {{hudaNickname}}.
 
-The message must be filled with genuine warmth and feel incredibly personal.
-Use creative, beautiful metaphors (like comparing her to a cozy dawn, a vibrant secret garden, or a lighthouse in a storm).
-The tone should be deeply loving, slightly whimsical, and profoundly sincere. It should sound like it's coming directly from {{senderName}}'s heart, capturing the unique essence of their bond.
+The message should be warm, friendly, and personal.
+Use simple and nice comparisons. For example, you can say she is like a sunny day.
+The tone should be loving and sound like it came straight from {{senderName}}. It should be simple and clear.
 
-Avoid clichés and generic phrases. Focus on authenticity and depth of feeling.
+Don't use fancy words. Just be honest and kind.
 
 Here is the information to use:
 - A quality {{senderName}} admires: {{admiredQuality}}
 - Context from {{senderName}}: {{messageContext}}
 
-Now, write a beautiful, heartfelt message from {{senderName}} to {{hudaNickname}}:`
+Now, write a sweet and simple message from {{senderName}} to {{hudaNickname}}:`
 });
 
 const generateMessageDraftFlow = ai.defineFlow(

@@ -8,10 +8,10 @@ import WhimsicalCat from '../WhimsicalCat';
 import Image from 'next/image';
 
 const hints = [
-  "Psst... I have a secret message for Nooni.",
-  "It's about someone she adores...",
-  "He's a star... a very handsome one!",
-  "They say he's one of Korea's finest.",
+  "Psst... I have a secret for Nooni.",
+  "It's about someone she really likes...",
+  "He's a famous star... and very handsome!",
+  "People say he's one of the best in Korea.",
   "His name sounds like... 'Hyun'?",
   "Okay, okay! You found him!"
 ];
@@ -45,10 +45,10 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
         className="absolute top-10 text-center z-10"
       >
         <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline">
-          A Whimsical Messenger Appears
+          A Little Messenger is Here
         </p>
         <p className="mt-2 text-foreground/80 text-sm">
-          This little friend has a secret to share. Click on them!
+          This little friend has a secret for you. Click on it!
         </p>
       </motion.div>
 
@@ -97,7 +97,7 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
                   className="w-full h-full object-cover"
               />
             </div>
-            <p className="text-foreground/80 max-w-sm">You found the hidden treasure—a little reminder of one of your favorite things!</p>
+            <p className="text-foreground/80 max-w-sm">You found the hidden treasure! A little reminder of someone you like!</p>
           </motion.div>
         )}
         </AnimatePresence>
@@ -111,7 +111,7 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
           >
             <Button onClick={handleNext} size="lg" className="font-bold">
-              Follow the Unforgettable Path <ArrowRight className="ml-2" />
+              Follow the Path <ArrowRight className="ml-2" />
             </Button>
           </motion.div>
         )}

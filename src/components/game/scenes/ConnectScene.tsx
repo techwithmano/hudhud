@@ -11,10 +11,10 @@ type ConnectSceneProps = {
 
 const points = [
   { x: '50%', y: '85%', message: 'It started with a simple "hello"...' },
-  { x: '20%', y: '60%', message: '...and grew with every shared secret.' },
+  { x: '20%', y: '60%', message: '...and grew with every secret we shared.' },
   { x: '15%', y: '30%', message: 'For all the times you made me laugh.' },
-  { x: '50%', y: '20%', message: 'You became a constant, a guiding star.' },
-  { x: '85%', y: '30%', message: 'For always understanding, even without words.' },
+  { x: '50%', y: '20%', message: 'You became my guiding star.' },
+  { x: '85%', y: '30%', message: 'For always understanding me.' },
   { x: '80%', y: '60%', message: 'And for all the adventures yet to come.' },
 ];
 
@@ -41,10 +41,10 @@ export default function ConnectScene({ onComplete }: ConnectSceneProps) {
         className="absolute top-10 left-1/2 -translate-x-1/2 text-center z-10"
       >
         <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline">
-          The Constellation of Us
+          Our Constellation
         </p>
         <p className="mt-2 text-foreground/80 text-sm">
-          Connect the memories to reveal the heart of our story.
+          Connect the dots to see our story.
         </p>
       </motion.div>
 
@@ -139,9 +139,9 @@ export default function ConnectScene({ onComplete }: ConnectSceneProps) {
           transition={{ delay: 0.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
-          <p className="text-white text-2xl font-headline bg-primary/70 p-3 rounded-md">You revealed the heart of our story!</p>
+          <p className="text-white text-2xl font-headline bg-primary/70 p-3 rounded-md">You found the heart of our story!</p>
           <Button onClick={onComplete} size="lg" className="font-bold">
-            Now, Let's Wish Upon a Star <Sparkles className="ml-2" />
+            Make a Wish <Sparkles className="ml-2" />
           </Button>
         </motion.div>
       )}

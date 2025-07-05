@@ -198,14 +198,14 @@ function Intro({ onStart }: { onStart: () => void }) {
           variants={itemVariants}
           className="text-lg md:text-xl text-foreground/80 max-w-lg mb-8"
         >
-          I've woven a tiny universe from starlight and inside jokes, just for you. It's a small reflection of the endless color you paint into my world.
+          I made a tiny world for you, filled with our inside jokes. It's just a small way to show you how much color you bring to my life.
         </motion.p>
         
         <motion.p
           variants={itemVariants}
           className="text-md md:text-lg text-foreground/70 mb-10"
         >
-          This place is built from our shared laughter, whispered secrets, and so, so much love. Ready to step inside?
+          This place is made of our laughs, our secrets, and a whole lot of love. Are you ready?
         </motion.p>
 
         <motion.div 
@@ -218,7 +218,7 @@ function Intro({ onStart }: { onStart: () => void }) {
             size="lg"
             className="font-bold text-lg px-10 py-6 shadow-xl shadow-primary/20"
           >
-            Let's Begin Our Journey
+            Let's Start
           </Button>
         </motion.div>
       </motion.div>

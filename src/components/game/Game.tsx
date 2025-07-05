@@ -66,9 +66,7 @@ export default function Game() {
   }, [isMuted, scene, audio, isAudioReady]);
 
   const handleStart = () => {
-    if (audio && isAudioReady && !isMuted) {
-      audio.play().catch(error => console.error("Audio play failed on start:", error));
-    }
+    setIsMuted(false);
     setScene('garden');
   };
 

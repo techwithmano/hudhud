@@ -97,8 +97,8 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
                 src="https://placehold.co/200x200.png"
                 width={200}
                 height={200}
-                alt="A picture of Hyun"
-                data-ai-hint="handsome korean man"
+                alt="A picture of Choi Seung-hyun smirking and winking"
+                data-ai-hint="man winking"
                 className="w-full h-full object-cover"
               />
             </div>

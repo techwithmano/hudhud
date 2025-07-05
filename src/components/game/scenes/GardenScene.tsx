@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from '@/components/ui/button';
 import { Sparkles, Search } from 'lucide-react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 type GardenSceneProps = {
   onComplete: () => void;
@@ -58,9 +59,9 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
       setIsFound(true);
       setHint(null);
       setDialogOpen(true);
-      playSound('collect.mp3');
+      playSound('collect.mp3', 0.5);
     } else {
-      playSound('click.mp3');
+      playSound('click.mp3', 0.5);
       setIncorrectClickId(face.id);
       setHint(hints[hintIndex]);
       setHintIndex((prevIndex) => (prevIndex + 1) % hints.length);
@@ -85,7 +86,6 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
       transition: { duration: 0.3 }
     }
   };
-
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-green-100 to-lime-100">
@@ -124,11 +124,11 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
                   alt={face.name}
                   width={100}
                   height={100}
-                  className={`rounded-full border-4 transition-all duration-300 ${
-                    isFound && face.isTarget ? 'border-green-400 shadow-2xl scale-110 ring-4 ring-yellow-300' : 'border-white/50'
-                  } ${
+                  className={cn(
+                    'rounded-full border-4 transition-all duration-300',
+                    isFound && face.isTarget ? 'border-green-400 shadow-2xl scale-110 ring-4 ring-yellow-300' : 'border-white/50',
                     isFound && !face.isTarget ? 'opacity-30' : 'opacity-100'
-                  }`}
+                  )}
                 />
               </motion.div>
             ))}
@@ -148,7 +148,7 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
         </motion.div>
       )}
 
-      <Dialog open={dialogOpen} onOpenChange={() => setDialogOpen(false)}>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="font-body">
           <DialogHeader>
             <DialogTitle className="font-headline text-2xl text-primary">You Found The One!</DialogTitle>

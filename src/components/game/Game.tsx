@@ -3,9 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Sparkles, Volume2, VolumeX } from 'lucide-react';
 
 // Import scenes
 import GardenScene from '@/components/game/scenes/GardenScene';
@@ -22,13 +21,8 @@ export default function Game() {
   const [isAudioReady, setIsAudioReady] = useState(false);
 
   const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
-    if (isMuted) return;
-    const sound = new Audio(`/${soundFile}`);
-    sound.volume = volume;
-    sound.onerror = () => {
-      console.error(`Could not load sound: /${soundFile}. Make sure the file exists in the 'public' folder.`);
-    };
-    sound.play().catch(error => console.error(`Could not play sound: ${soundFile}.`, error));
+    // Sound effect playback is currently disabled.
+    return;
   }, [isMuted]);
 
 
@@ -95,7 +89,7 @@ export default function Game() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-blue-100 to-background font-body">
+    <div className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-secondary/40 to-background font-body">
        <button 
         onClick={() => setIsMuted(!isMuted)} 
         className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/30 backdrop-blur-sm text-primary hover:bg-white/50 transition-colors"
@@ -120,26 +114,105 @@ export default function Game() {
 }
 
 function Intro({ onStart }: { onStart: () => void }) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  const sparkleVariants = {
+    initial: { scale: 0, opacity: 0, y: 0 },
+    animate: (i: number) => ({
+      scale: [0, 1, 0.5, 1],
+      opacity: [0, 1, 1, 0],
+      y: [0, -20, 0],
+      transition: {
+        delay: i * 0.3 + 0.5,
+        duration: 2.5,
+        repeat: Infinity,
+        repeatDelay: 2,
+      },
+    }),
+  };
+
   return (
-     <div className="w-full h-full flex items-center justify-center p-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+    <div className="w-full h-full flex items-center justify-center p-4 overflow-hidden">
+      <motion.div
+        className="text-center flex flex-col items-center max-w-2xl relative"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {[...Array(7)].map((_, i) => (
+          <motion.div
+            key={i}
+            custom={i}
+            variants={sparkleVariants}
+            initial="initial"
+            animate="animate"
+            style={{
+              position: 'absolute',
+              top: `${10 + Math.random() * 80}%`,
+              left: `${10 + Math.random() * 80}%`,
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <Sparkles className="text-primary/60" size={12 + Math.random() * 20} style={{ filter: 'blur(1px)' }}/>
+          </motion.div>
+        ))}
+
+        <motion.h1
+          variants={itemVariants}
+          className="font-headline text-5xl md:text-7xl font-bold text-primary mb-4 drop-shadow-lg"
         >
-            <Card className="max-w-lg text-center shadow-2xl bg-white/50 backdrop-blur-lg">
-                <CardHeader>
-                    <CardTitle className="font-headline text-4xl text-primary">For My One and Only Nooni</CardTitle>
-                    <CardDescription className="text-foreground/80">I've woven a tiny universe from starlight and inside jokes, just for you. It's a small reflection of the endless color you paint into my world.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className="mb-6">This place is built from our shared laughter, whispered secrets, and so, so much love. Ready to step inside?</p>
-                    <Button onClick={onStart} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-                        Let's Begin
-                    </Button>
-                </CardContent>
-            </Card>
+          For My One and Only Nooni
+        </motion.h1>
+        
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl text-foreground/80 max-w-lg mb-8"
+        >
+          I've woven a tiny universe from starlight and inside jokes, just for you. It's a small reflection of the endless color you paint into my world.
+        </motion.p>
+        
+        <motion.p
+          variants={itemVariants}
+          className="text-md md:text-lg text-foreground/70 mb-10"
+        >
+          This place is built from our shared laughter, whispered secrets, and so, so much love. Ready to step inside?
+        </motion.p>
+
+        <motion.div 
+          variants={itemVariants} 
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            onClick={onStart}
+            size="lg"
+            className="font-bold text-lg px-10 py-6 shadow-xl shadow-primary/20"
+          >
+            Let's Begin Our Journey
+          </Button>
         </motion.div>
+      </motion.div>
     </div>
-  )
+  );
 }

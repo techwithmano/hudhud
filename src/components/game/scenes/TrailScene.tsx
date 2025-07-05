@@ -26,7 +26,6 @@ export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
     // Can only unlock the next sequential memory
     if (id !== unlockedCount) return;
     
-    playSound('collect.mp3');
     setUnlockedCount(id + 1);
     
     const targetRef = memoryRefs.current[id];
@@ -91,7 +90,7 @@ export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
           transition={{ delay: 0.5 }}
           className="sticky bottom-0 flex justify-center py-8 bg-gradient-to-t from-background to-transparent"
         >
-          <Button onClick={() => { playSound('click.mp3'); onComplete(); }} size="lg" className="font-bold">
+          <Button onClick={() => { onComplete(); }} size="lg" className="font-bold">
             Let's Paint the Sky with Wishes
           </Button>
         </motion.div>

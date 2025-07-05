@@ -62,13 +62,11 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
   const handleInteraction = (item: typeof collectibles[0]) => {
     if (collectedItems.includes(item.id)) return;
 
-    playSound('collect.mp3');
     setDialogContent(item.message);
     setCollectedItems(prev => [...prev, item.id]);
   };
 
   const handleNext = () => {
-    playSound('click.mp3');
     onComplete();
   };
 

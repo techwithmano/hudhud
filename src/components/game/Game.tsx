@@ -71,7 +71,6 @@ export default function Game() {
   }, [isMuted, scene, audio, isAudioReady]);
 
   const handleStart = () => {
-    playSound('click.mp3');
     if (audio && isAudioReady && !isMuted) {
       audio.play().catch(error => console.error("Audio play failed on start:", error));
     }

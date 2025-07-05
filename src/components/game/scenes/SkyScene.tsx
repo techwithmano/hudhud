@@ -43,7 +43,6 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
 
   const handleStarClick = (id: number) => {
     if (collectedStars < TOTAL_STARS) {
-      playSound('collect.mp3', 0.4);
       setCollectedStars(c => c + 1);
       setStars(s => s.filter(star => star.id !== id));
     }
@@ -52,7 +51,6 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
   const isComplete = collectedStars >= TOTAL_STARS;
 
   const handleNext = () => {
-    playSound('click.mp3');
     onComplete();
   };
 

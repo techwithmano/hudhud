@@ -114,6 +114,20 @@ export default function Game() {
 }
 
 function Intro({ onStart }: { onStart: () => void }) {
+  const [sparklesData, setSparklesData] = useState<Array<{ id: number; top: string; left: string; size: number }>>([]);
+
+  useEffect(() => {
+    // Generate random values only on the client, after the component has mounted.
+    const newSparkles = [...Array(7)].map((_, i) => ({
+      id: i,
+      top: `${10 + Math.random() * 80}%`,
+      left: `${10 + Math.random() * 80}%`,
+      size: 12 + Math.random() * 20,
+    }));
+    setSparklesData(newSparkles);
+  }, []); // Empty dependency array ensures this runs only once on the client.
+
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -160,21 +174,21 @@ function Intro({ onStart }: { onStart: () => void }) {
         initial="hidden"
         animate="visible"
       >
-        {[...Array(7)].map((_, i) => (
+        {sparklesData.map((sparkle, i) => (
           <motion.div
-            key={i}
+            key={sparkle.id}
             custom={i}
             variants={sparkleVariants}
             initial="initial"
             animate="animate"
             style={{
               position: 'absolute',
-              top: `${10 + Math.random() * 80}%`,
-              left: `${10 + Math.random() * 80}%`,
+              top: sparkle.top,
+              left: sparkle.left,
               transform: 'translate(-50%, -50%)',
             }}
           >
-            <Sparkles className="text-primary/60" size={12 + Math.random() * 20} style={{ filter: 'blur(1px)' }}/>
+            <Sparkles className="text-primary/60" size={sparkle.size} style={{ filter: 'blur(1px)' }}/>
           </motion.div>
         ))}
 

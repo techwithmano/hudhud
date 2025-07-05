@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Heart, Lock, Unlock } from 'lucide-react';
+import { Heart, Lock, Unlock, Sparkles } from 'lucide-react';
 
 type TrailSceneProps = {
   onComplete: () => void;
@@ -91,7 +91,7 @@ export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
           className="sticky bottom-0 flex justify-center py-8 bg-gradient-to-t from-background to-transparent"
         >
           <Button onClick={() => { onComplete(); }} size="lg" className="font-bold">
-            Let's Paint the Sky with Wishes
+            Let's Connect Our Story <Sparkles className="ml-2" />
           </Button>
         </motion.div>
       )}

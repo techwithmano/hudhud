@@ -11,8 +11,9 @@ import GardenScene from '@/components/game/scenes/GardenScene';
 import TrailScene from '@/components/game/scenes/TrailScene';
 import SkyScene from '@/components/game/scenes/SkyScene';
 import FinalScene from '@/components/game/FinalScene';
+import ConnectScene from './scenes/ConnectScene';
 
-type Scene = 'intro' | 'garden' | 'trail' | 'sky' | 'final';
+type Scene = 'intro' | 'garden' | 'trail' | 'connect' | 'sky' | 'final';
 
 export default function Game() {
   const [scene, setScene] = useState<Scene>('intro');
@@ -23,7 +24,7 @@ export default function Game() {
   const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
     // Sound effect playback is currently disabled.
     return;
-  }, [isMuted]);
+  }, []);
 
 
   useEffect(() => {
@@ -78,7 +79,9 @@ export default function Game() {
       case 'garden':
         return <GardenScene onComplete={() => setScene('trail')} playSound={playSound} />;
       case 'trail':
-        return <TrailScene onComplete={() => setScene('sky')} playSound={playSound} />;
+        return <TrailScene onComplete={() => setScene('connect')} playSound={playSound} />;
+      case 'connect':
+        return <ConnectScene onComplete={() => setScene('sky')} playSound={playSound} />;
       case 'sky':
         return <SkyScene onComplete={() => setScene('final')} playSound={playSound} />;
       case 'final':

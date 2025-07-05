@@ -46,11 +46,11 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
     const generateAndSetFaces = async () => {
         setIsLoading(true);
         try {
-            const imagePromises = characterDescriptions.map(char => 
-                generateCharacterImage({ description: char.description })
-            );
-            
-            const generatedImages = await Promise.all(imagePromises);
+            const generatedImages = [];
+            for (const char of characterDescriptions) {
+                const imageResult = await generateCharacterImage({ description: char.description });
+                generatedImages.push(imageResult);
+            }
             
             const populatedFaces = characterDescriptions.map((char, index) => ({
                 ...char,

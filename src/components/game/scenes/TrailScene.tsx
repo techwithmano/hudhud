@@ -14,11 +14,11 @@ type TrailSceneProps = {
 };
 
 const platforms = [
-  { id: 1, pos: { x: '50%', y: '90%' }, message: "This first step is for every single laugh we've shared, especially the ones so hard we ended up crying. You're the funniest person I know." },
-  { id: 2, pos: { x: '25%', y: '70%' }, message: "This one glows with the warmth of your incredible kindness. It's a light that you shine on everyone around you, and it never, ever fades." },
-  { id: 3, pos: { x: '75%', y: '50%' }, message: "This step holds all our inside jokes and whispered secrets, a whole little universe that only we understand. It's my favorite place." },
-  { id: 4, pos: { x: '40%', y: '30%' }, message: "And this one? It's a promise for all the amazing adventures still waiting for us. I can't wait to see where we go next, together." },
-  { id: 5, pos: { x: '60%', y: '10%' }, message: "You made it to the top! Being your friend is the greatest, most wonderful adventure of all. Thank you for everything." },
+  { id: 1, pos: { x: '50%', y: '90%' }, message: "This first leap is for every laugh that's ever made our stomachs hurt and our eyes water. You have a PhD in making me smile." },
+  { id: 2, pos: { x: '25%', y: '70%' }, message: "This platform glows with the warmth of your heart. Your kindness is a constant, gentle light that makes the world a softer, better place for everyone lucky enough to know you." },
+  { id: 3, pos: { x: '75%', y: '50%' }, message: "This step is our secret hideout, built from whispered conversations and jokes no one else would get. It's a universe just for us, and it's my favorite place to be." },
+  { id: 4, pos: { x: '40%', y: '30%' }, message: "And this one? It's a promise. A promise of a million more adventures, big and small, waiting just for us. I can't wait for our next chapter." },
+  { id: 5, pos: { x: '60%', y: '10%' }, message: "You reached the top! Just like you always reach the deepest parts of my heart. This journey with you is the greatest adventure, and I'm so grateful for every single step." },
 ];
 
 export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
@@ -56,8 +56,8 @@ export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
   return (
     <div className="relative w-full h-full bg-gradient-to-b from-purple-100 to-background">
       <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.5, duration:1}}>
-        <p className="absolute top-10 left-1/2 -translate-x-1/2 text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg text-center font-headline">The Trail of Laughs</p>
-        <p className="absolute top-20 left-1/2 -translate-x-1/2 text-foreground/80 text-sm">Click the next platform to jump!</p>
+        <p className="absolute top-10 left-1/2 -translate-x-1/2 text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg text-center font-headline">The Path of Unforgettable Steps</p>
+        <p className="absolute top-20 left-1/2 -translate-x-1/2 text-foreground/80 text-sm">Leap from one cherished moment to the next!</p>
       </motion.div>
       
       {isClient && <PlayerCharacter 
@@ -99,7 +99,7 @@ export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
             <Button onClick={handleNext} size="lg" className="font-bold">
-                Reach for the Sky of Wishes
+                Let's Paint the Sky with Wishes
             </Button>
         </motion.div>
       )}

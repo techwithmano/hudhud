@@ -59,8 +59,8 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
   return (
     <div className="relative w-full h-full overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
       <div className="absolute top-10 left-1/2 -translate-x-1/2 z-10 text-center text-white">
-        <h2 className="font-headline text-3xl">Sky of Wishes</h2>
-        <p>Catch the stars to make a wish!</p>
+        <h2 className="font-headline text-3xl">The Constellation of Our Dreams</h2>
+        <p>Catch the falling wishes and weave them into a constellation of hope.</p>
         <Progress value={(collectedStars / TOTAL_STARS) * 100} className="w-64 mt-4 bg-white/20" />
         <p className="mt-2 text-lg">{collectedStars} / {TOTAL_STARS} Stars</p>
       </div>
@@ -88,9 +88,9 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
             animate={{ opacity: 1, y: 0 }}
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
-            <p className="text-white text-2xl font-headline">You've collected all the wishes!</p>
+            <p className="text-white text-2xl font-headline">The stars have heard you. The sky is full of our wishes.</p>
             <Button onClick={handleNext} size="lg" className="font-bold bg-yellow-400 hover:bg-yellow-500 text-blue-900">
-                See Your Final Message
+                Read Your Star-Written Note
             </Button>
         </motion.div>
       )}

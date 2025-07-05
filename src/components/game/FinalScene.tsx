@@ -32,7 +32,7 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
           transition={{ delay: 1, duration: 0.8 }}
           className="text-4xl md:text-6xl font-headline font-bold mb-4 text-primary"
         >
-          For my dearest Nooni,
+          To my irreplaceable Nooni,
         </motion.h1>
         <motion.p 
           initial={{ y: -20, opacity: 0 }}
@@ -40,13 +40,11 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-lg md:text-xl leading-relaxed mb-8"
         >
-          {`My dearest Huda, my Nooni,
+          {`My incredible Huda, my luminous Nooni, you've reached the heart of this little universe I crafted for you. Every glowing flower, every giggling memory, every captured star is a testament to the wonder that you are. It's a reflection of the light you shine, the joy you create, and the home I've found in your friendship.
 
-          You made it! You journeyed through the little world I built just for you. Each glowing flower and sparkling star is a tiny piece of my heart—a reflection of the incredible light, laughter, and happiness you bring into my life every single day.
-
-          Thank you for being the most amazing, supportive, and brilliant friend a person could ever ask for. This silly game is just a small way to say a very, very big thing: you mean the absolute world to me.
-
-          With all my love, forever and always.`}
+          Thank you for being my confidante, my cheerleader, and the brightest star in my personal sky. This whimsical world is just a shadow of what you mean to me, but I hope you felt every ounce of love poured into it.
+          
+          You are, and always will be, my absolute world. With endless love and a universe of gratitude.`}
         </motion.p>
       </div>
     </motion.div>

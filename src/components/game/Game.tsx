@@ -107,13 +107,13 @@ function Intro({ onStart }: { onStart: () => void }) {
         >
             <Card className="max-w-lg text-center shadow-2xl bg-white/50 backdrop-blur-lg">
                 <CardHeader>
-                    <CardTitle className="font-headline text-4xl text-primary">A Gift for My Dearest Nooni</CardTitle>
-                    <CardDescription className="text-foreground/80">I made this little world just for you, to show you a fraction of the color and joy you bring to mine.</CardDescription>
+                    <CardTitle className="font-headline text-4xl text-primary">For My One and Only Nooni</CardTitle>
+                    <CardDescription className="text-foreground/80">I've woven a tiny universe from starlight and inside jokes, just for you. It's a small reflection of the endless color you paint into my world.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p className="mb-6">It's a place made of memories, inside jokes, and a whole lot of love. Are you ready to explore?</p>
+                    <p className="mb-6">This place is built from our shared laughter, whispered secrets, and so, so much love. Ready to step inside?</p>
                     <Button onClick={onStart} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-                        Start Our Adventure
+                        Let's Begin
                     </Button>
                 </CardContent>
             </Card>

@@ -17,9 +17,9 @@ const collectibles = [
     render: (props: any) => <WhimsicalCat {...props} />,
     pos: { x: '20%', y: '65%' },
     message: {
-      title: 'A Silly Cat for Our Jokes',
+      title: 'The Guardian of Giggles',
       content:
-        "This little cat is for all our silly inside jokes and the moments we laugh so hard we can't breathe. Thank you for filling my life with so much fun.",
+        "This whimsical cat holds every one of our inside jokes and protects the moments we've laughed until we've cried. It's a tribute to the pure, unfiltered joy you bring into my life.",
     },
     className: 'w-28 h-28 md:w-32 md:h-32',
   },
@@ -28,9 +28,9 @@ const collectibles = [
     render: (props: any) => <Flower {...props} />,
     pos: { x: '50%', y: '50%' },
     message: {
-      title: 'A Flower That Never Fades',
+      title: 'The Bloom of Support',
       content:
-        'Like this flower, your support helps me grow and see the beauty in everything. You make my world bloom, always.',
+        'This flower will never wilt, just like your unwavering support. With you by my side, I feel like I can grow, bloom, and reach for the sun. You make my world beautiful.',
     },
     className: 'w-24 h-24 md:w-28 md:h-28 text-pink-400',
   },
@@ -39,9 +39,9 @@ const collectibles = [
     render: (props: any) => <Sparkles {...props} />,
     pos: { x: '80%', y: '60%' },
     message: {
-      title: 'A Dash of Your Magic',
+      title: 'A Shard of Your Starlight',
       content:
-        'This sparkle is for the magic you bring into my life every single day. Just by being you, you make everything so much brighter.',
+        "This isn't just a sparkle; it's a tiny piece of the magic you carry within you. You don't just brighten my day; you make my whole world glitter. Thank you for being you.",
     },
     className: 'w-24 h-24 md:w-28 md:h-28 text-yellow-300 fill-yellow-300',
   },
@@ -75,10 +75,10 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
         className="absolute top-10 left-1/2 -translate-x-1/2 text-center z-10"
       >
         <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline">
-          The Garden of Our Memories
+          The Whispering Garden
         </p>
         <p className="mt-2 text-foreground/80 text-sm">
-          {allCollected ? "You've gathered all the memories!" : 'Click on each memory to collect it.'}
+          {allCollected ? "You've gathered all the memories!" : 'Listen closely... the garden has secrets to share. Click on each memory.'}
         </p>
       </motion.div>
 
@@ -115,7 +115,7 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
           <Button onClick={handleNext} size="lg" className="font-bold">
-            Follow the Trail of Laughs <Sparkles className="ml-2" />
+            Follow the Giggling Path <Sparkles className="ml-2" />
           </Button>
         </motion.div>
       )}

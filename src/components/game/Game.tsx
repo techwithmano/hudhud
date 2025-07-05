@@ -22,9 +22,19 @@ export default function Game() {
   const [isAudioReady, setIsAudioReady] = useState(false);
 
   const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
-    // Sound effect playback is currently disabled.
-    return;
-  }, []);
+    if (isMuted) return;
+    try {
+      const sound = new Audio(`/${soundFile}`);
+      sound.volume = volume;
+      sound.play().catch(error => {
+        // This can happen if the user hasn't interacted with the page yet.
+        // Or if the file is missing. We'll log it but not crash.
+        console.error(`Could not play sound ${soundFile}:`, error);
+      });
+    } catch (error) {
+        console.error(`Error playing sound ${soundFile}:`, error);
+    }
+  }, [isMuted]);
 
 
   useEffect(() => {
@@ -66,7 +76,7 @@ export default function Game() {
   }, [isMuted, scene, audio, isAudioReady]);
 
   const handleStart = () => {
-    setIsMuted(false);
+    setIsMuted(false); 
     setScene('garden');
   };
 

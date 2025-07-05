@@ -32,7 +32,11 @@ const prompt = ai.definePrompt({
   name: 'generateMessageDraftPrompt',
   input: {schema: GenerateMessageDraftInputSchema},
   output: {schema: GenerateMessageDraftOutputSchema},
-  prompt: `You are a heartfelt message generator. Generate a sweet, personalized message for {{hudaNickname}}, from {{senderName}}.\n\nContext: {{messageContext}}\n\nMessage Draft:`,
+  prompt: `You are an expert at writing deeply affectionate and personal messages. Your task is to help {{senderName}} write a beautiful, heartfelt note to their special person, {{hudaNickname}}. Use the provided context to weave in personal memories and inside jokes. The tone should be warm, loving, and a little whimsical, reflecting a deep and cherished friendship. Generate only the message itself.
+
+Context from {{senderName}}: {{messageContext}}
+
+Your lovely message for {{hudaNickname}}:`
 });
 
 const generateMessageDraftFlow = ai.defineFlow(

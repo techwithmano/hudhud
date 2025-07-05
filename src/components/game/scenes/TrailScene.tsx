@@ -13,11 +13,11 @@ type TrailSceneProps = {
 };
 
 const platforms = [
-  { id: 1, pos: { x: '50%', y: '90%' }, message: "Remember that time we laughed so hard we cried? That's a sparkle." },
-  { id: 2, pos: { x: '25%', y: '70%' }, message: "Your kindness shines brighter than any star." },
-  { id: 3, pos: { x: '75%', y: '50%' }, message: "For every silly joke and every shared secret." },
-  { id: 4, pos: { x: '40%', y: '30%' }, message: "This one is for all the adventures we've yet to have!" },
-  { id: 5, pos: { x: '60%', y: '10%' }, message: "You've reached the top! Your friendship means the world." },
+  { id: 1, pos: { x: '50%', y: '90%' }, message: "This step is for every laugh we've shared, especially the ones that made us cry with joy." },
+  { id: 2, pos: { x: '25%', y: '70%' }, message: "This one glows with the warmth of your kindness, a light that never, ever fades." },
+  { id: 3, pos: { x: '75%', y: '50%' }, message: "This step holds all our inside jokes and whispered secrets, a little world only we understand." },
+  { id: 4, pos: { x: '40%', y: '30%' }, message: "And this one? It's a promise for all the incredible adventures still waiting for us." },
+  { id: 5, pos: { x: '60%', y: '10%' }, message: "You made it to the top! Being your friend is the greatest adventure of all." },
 ];
 
 export default function TrailScene({ onComplete }: TrailSceneProps) {

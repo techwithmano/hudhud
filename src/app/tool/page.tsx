@@ -18,7 +18,7 @@ export default function MessageToolPage() {
           <CardHeader>
             <CardTitle className="font-headline text-3xl">AI Message Helper</CardTitle>
             <CardDescription>
-              Create a heartfelt message for Nooni. Provide some details, and our AI will help you draft a sweet note.
+             Stuck on the right words? Let our little AI helper, powered by your own memories, help you craft the perfect, heartfelt message for your Nooni.
             </CardDescription>
           </CardHeader>
           <CardContent>

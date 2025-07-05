@@ -13,8 +13,8 @@ type GardenSceneProps = {
 };
 
 const interactiveObjects = [
-  { id: 'cat1', pos: { x: '20%', y: '85%' }, message: { title: "A Purrfect Message", content: "A friendly cat purrs as you approach. It seems to be saying, 'You are loved more than you know, Nooni.'" } },
-  { id: 'flower1', pos: { x: '75%', y: '80%' }, message: { title: "A Glowing Flower", content: "This flower glows with warmth. It reminds you of all the bright and happy moments we've shared." } },
+  { id: 'cat1', pos: { x: '20%', y: '85%' }, message: { title: "A Cuddly Friend", content: "This friendly cat whispers a secret: 'The world is a much brighter and happier place with you in it, Nooni.'" } },
+  { id: 'flower1', pos: { x: '75%', y: '80%' }, message: { title: "A Shimmering Memory", content: "This flower glows with a special light, holding a memory of a time we laughed until our stomachs hurt. Remember?" } },
 ];
 
 export default function GardenScene({ onComplete }: GardenSceneProps) {

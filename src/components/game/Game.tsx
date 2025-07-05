@@ -22,7 +22,7 @@ export default function Game() {
 
   useEffect(() => {
     // Lazy load audio only on the client
-    const bgMusic = new Audio('/soft-music.mp3');
+    const bgMusic = new Audio('/aeao.mp3');
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
     setAudio(bgMusic);
@@ -96,13 +96,13 @@ function Intro({ onStart }: { onStart: () => void }) {
         >
             <Card className="max-w-lg text-center shadow-2xl bg-white/50 backdrop-blur-lg">
                 <CardHeader>
-                    <CardTitle className="font-headline text-4xl text-primary">Welcome to the Garden of Nooni</CardTitle>
-                    <CardDescription className="text-foreground/80">A little world made just for you.</CardDescription>
+                    <CardTitle className="font-headline text-4xl text-primary">A Gift for My Dearest Nooni</CardTitle>
+                    <CardDescription className="text-foreground/80">I built this little world to show you a fraction of the color you bring to mine.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p className="mb-6">Explore, play, and remember how much you're loved. Are you ready to begin your journey?</p>
+                    <p className="mb-6">Ready to explore a place made of memories, laughs, and a whole lot of love? Let's begin!</p>
                     <Button onClick={onStart} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-                        Start Exploring
+                        Start the Adventure
                     </Button>
                 </CardContent>
             </Card>

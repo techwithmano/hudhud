@@ -40,14 +40,13 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-lg md:text-xl leading-relaxed mb-8"
         >
-          {/* /// DEVELOPER NOTE: This is the placeholder for the final message. /// */}
           {`Dearest Huda, my Nooni,
-          
-          If you're seeing this, it means you've journeyed through the little world I made just for you. Every sparkle, every silly cat, and every corner of this garden is a reflection of the joy and light you bring into my life.
-          
-          Thank you for being my best friend, my confidante, and my partner in all things fun and crazy. This is just a small token to show you how much you mean to me.
-          
-          With all my love, always.`}
+
+          If you're reading this, it means you've journeyed through the whimsical world I built for you. Each silly cat, glowing flower, and sparkling path is a tiny piece of my heart, a reflection of the incredible light and happiness you bring into my life every single day.
+
+          Thank you for being the most amazing friend a person could ask for. For the laughter, the support, and for just being you. This little adventure is just a small way to say a very big thing: you mean the world to me.
+
+          With all my love, forever and always.`}
         </motion.p>
       </div>
     </motion.div>

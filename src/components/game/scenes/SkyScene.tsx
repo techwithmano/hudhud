@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 
 type SkySceneProps = {
   onComplete: () => void;
+  playSound: (soundFile: string, volume?: number) => void;
 };
 
 const TOTAL_STARS = 10;
@@ -18,7 +19,7 @@ interface FallingStar {
   delay: number;
 }
 
-export default function SkyScene({ onComplete }: SkySceneProps) {
+export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
   const [collectedStars, setCollectedStars] = useState(0);
   const [stars, setStars] = useState<FallingStar[]>([]);
 
@@ -42,12 +43,18 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
 
   const handleStarClick = (id: number) => {
     if (collectedStars < TOTAL_STARS) {
+      playSound('collect.mp3', 0.4);
       setCollectedStars(c => c + 1);
       setStars(s => s.filter(star => star.id !== id));
     }
   };
   
   const isComplete = collectedStars >= TOTAL_STARS;
+
+  const handleNext = () => {
+    playSound('click.mp3');
+    onComplete();
+  };
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
@@ -82,7 +89,7 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
             <p className="text-white text-2xl font-headline">You've collected all the wishes!</p>
-            <Button onClick={onComplete} size="lg" className="font-bold bg-yellow-400 hover:bg-yellow-500 text-blue-900">
+            <Button onClick={handleNext} size="lg" className="font-bold bg-yellow-400 hover:bg-yellow-500 text-blue-900">
                 See Your Final Message
             </Button>
         </motion.div>

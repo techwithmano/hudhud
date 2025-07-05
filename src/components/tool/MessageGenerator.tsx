@@ -56,7 +56,7 @@ export default function MessageGenerator() {
     <form action={formAction} ref={formRef} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="hudaNickname">Huda's Nickname</Label>
+          <Label htmlFor="hudaNickname">Her Nickname</Label>
           <Input id="hudaNickname" name="hudaNickname" placeholder="e.g., Nooni" required />
           {state?.error?.hudaNickname && <p className="text-sm text-destructive">{state.error.hudaNickname[0]}</p>}
         </div>
@@ -67,15 +67,20 @@ export default function MessageGenerator() {
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="messageContext">Message Context</Label>
+        <Label htmlFor="messageContext">A Memory or Feeling</Label>
         <Textarea
           id="messageContext"
           name="messageContext"
-          placeholder="Share a memory, an inside joke, or a feeling to include in the message..."
-          rows={5}
+          placeholder="Share a memory, an inside joke, or a feeling... e.g., 'Remember that time we...'"
+          rows={3}
           required
         />
         {state?.error?.messageContext && <p className="text-sm text-destructive">{state.error.messageContext[0]}</p>}
+      </div>
+       <div className="space-y-2">
+          <Label htmlFor="admiredQuality">A Quality You Admire</Label>
+          <Input id="admiredQuality" name="admiredQuality" placeholder="e.g., Her incredible kindness, her hilarious laugh" required />
+          {state?.error?.admiredQuality && <p className="text-sm text-destructive">{state.error.admiredQuality[0]}</p>}
       </div>
       <SubmitButton />
 

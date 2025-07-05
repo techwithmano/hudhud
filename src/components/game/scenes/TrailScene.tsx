@@ -10,17 +10,18 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 
 type TrailSceneProps = {
   onComplete: () => void;
+  playSound: (soundFile: string, volume?: number) => void;
 };
 
 const platforms = [
-  { id: 1, pos: { x: '50%', y: '90%' }, message: "This step is for every laugh we've shared, especially the ones that made us cry with joy." },
-  { id: 2, pos: { x: '25%', y: '70%' }, message: "This one glows with the warmth of your kindness, a light that never, ever fades." },
-  { id: 3, pos: { x: '75%', y: '50%' }, message: "This step holds all our inside jokes and whispered secrets, a little world only we understand." },
-  { id: 4, pos: { x: '40%', y: '30%' }, message: "And this one? It's a promise for all the incredible adventures still waiting for us." },
-  { id: 5, pos: { x: '60%', y: '10%' }, message: "You made it to the top! Being your friend is the greatest adventure of all." },
+  { id: 1, pos: { x: '50%', y: '90%' }, message: "This first step is for every single laugh we've shared, especially the ones so hard we ended up crying. You're the funniest person I know." },
+  { id: 2, pos: { x: '25%', y: '70%' }, message: "This one glows with the warmth of your incredible kindness. It's a light that you shine on everyone around you, and it never, ever fades." },
+  { id: 3, pos: { x: '75%', y: '50%' }, message: "This step holds all our inside jokes and whispered secrets, a whole little universe that only we understand. It's my favorite place." },
+  { id: 4, pos: { x: '40%', y: '30%' }, message: "And this one? It's a promise for all the amazing adventures still waiting for us. I can't wait to see where we go next, together." },
+  { id: 5, pos: { x: '60%', y: '10%' }, message: "You made it to the top! Being your friend is the greatest, most wonderful adventure of all. Thank you for everything." },
 ];
 
-export default function TrailScene({ onComplete }: TrailSceneProps) {
+export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
   const [currentPlatform, setCurrentPlatform] = useState(0);
   const [dialogContent, setDialogContent] = useState<string | null>(null);
   const [showCompletion, setShowCompletion] = useState(false);
@@ -38,12 +39,18 @@ export default function TrailScene({ onComplete }: TrailSceneProps) {
   
   const handlePlatformClick = (platformId: number) => {
     if (platformId === currentPlatform + 1) {
+      playSound('click.mp3');
       setCurrentPlatform(platformId);
       setDialogContent(platforms[platformId].message);
       if (platformId === platforms.length - 1) {
         setTimeout(() => setShowCompletion(true), 1500);
       }
     }
+  };
+
+  const handleNext = () => {
+    playSound('click.mp3');
+    onComplete();
   };
 
   return (
@@ -91,7 +98,7 @@ export default function TrailScene({ onComplete }: TrailSceneProps) {
             animate={{ opacity: 1, y: 0 }}
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
-            <Button onClick={onComplete} size="lg" className="font-bold">
+            <Button onClick={handleNext} size="lg" className="font-bold">
                 Reach for the Sky of Wishes
             </Button>
         </motion.div>

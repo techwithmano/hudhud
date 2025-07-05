@@ -23,14 +23,14 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
           className="flex justify-center mb-6"
         >
           <Heart className="w-16 h-16 text-primary animate-pulse" />
-          <Sparkles className="w-12 h-12 text-accent-foreground/80 absolute -right-4 -top-4" />
-          <Sparkles className="w-8 h-8 text-accent-foreground/60 absolute -left-2 top-8" />
+          <Sparkles className="w-12 h-12 text-accent-foreground/80 absolute -right-4 -top-4 animate-pulse" />
+          <Sparkles className="w-8 h-8 text-accent-foreground/60 absolute -left-2 top-8 animate-pulse" />
         </motion.div>
         <motion.h1 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="text-4xl md:text-6xl font-headline font-bold mb-4"
+          className="text-4xl md:text-6xl font-headline font-bold mb-4 text-primary"
         >
           For my dearest Nooni,
         </motion.h1>
@@ -40,11 +40,11 @@ export default function FinalScene({ onRestart }: FinalSceneProps) {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-lg md:text-xl leading-relaxed mb-8"
         >
-          {`Dearest Huda, my Nooni,
+          {`My dearest Huda, my Nooni,
 
-          If you're reading this, it means you've journeyed through the whimsical world I built for you. Each silly cat, glowing flower, and sparkling path is a tiny piece of my heart, a reflection of the incredible light and happiness you bring into my life every single day.
+          You made it! You journeyed through the little world I built just for you. Each glowing flower and sparkling star is a tiny piece of my heart—a reflection of the incredible light, laughter, and happiness you bring into my life every single day.
 
-          Thank you for being the most amazing friend a person could ask for. For the laughter, the support, and for just being you. This little adventure is just a small way to say a very big thing: you mean the world to me.
+          Thank you for being the most amazing, supportive, and brilliant friend a person could ever ask for. This silly game is just a small way to say a very, very big thing: you mean the absolute world to me.
 
           With all my love, forever and always.`}
         </motion.p>

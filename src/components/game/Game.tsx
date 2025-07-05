@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -19,6 +19,14 @@ export default function Game() {
   const [scene, setScene] = useState<Scene>('intro');
   const [isMuted, setIsMuted] = useState(true);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
+    if (isMuted) return;
+    const sound = new Audio(`/${soundFile}`);
+    sound.volume = volume;
+    sound.play().catch(error => console.error(`Failed to play sound: ${soundFile}`, error));
+  }, [isMuted]);
+
 
   useEffect(() => {
     // Lazy load audio only on the client
@@ -46,14 +54,17 @@ export default function Game() {
     switch (scene) {
       case 'intro':
         return (
-          <Intro onStart={() => setScene('garden')} />
+          <Intro onStart={() => {
+            playSound('click.mp3');
+            setScene('garden');
+          }} />
         );
       case 'garden':
-        return <GardenScene onComplete={() => setScene('trail')} />;
+        return <GardenScene onComplete={() => setScene('trail')} playSound={playSound} />;
       case 'trail':
-        return <TrailScene onComplete={() => setScene('sky')} />;
+        return <TrailScene onComplete={() => setScene('sky')} playSound={playSound} />;
       case 'sky':
-        return <SkyScene onComplete={() => setScene('final')} />;
+        return <SkyScene onComplete={() => setScene('final')} playSound={playSound} />;
       case 'final':
         return <FinalScene onRestart={() => setScene('intro')} />;
       default:
@@ -97,12 +108,12 @@ function Intro({ onStart }: { onStart: () => void }) {
             <Card className="max-w-lg text-center shadow-2xl bg-white/50 backdrop-blur-lg">
                 <CardHeader>
                     <CardTitle className="font-headline text-4xl text-primary">A Gift for My Dearest Nooni</CardTitle>
-                    <CardDescription className="text-foreground/80">I built this little world to show you a fraction of the color you bring to mine.</CardDescription>
+                    <CardDescription className="text-foreground/80">I made this little world just for you, to show you a fraction of the color and joy you bring to mine.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p className="mb-6">Ready to explore a place made of memories, laughs, and a whole lot of love? Let's begin!</p>
+                    <p className="mb-6">It's a place made of memories, inside jokes, and a whole lot of love. Are you ready to explore?</p>
                     <Button onClick={onStart} size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-                        Start the Adventure
+                        Start Our Adventure
                     </Button>
                 </CardContent>
             </Card>

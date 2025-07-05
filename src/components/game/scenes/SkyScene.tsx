@@ -56,10 +56,10 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 z-10 text-center text-white">
+      <div className="absolute top-10 inset-x-0 z-10 px-4 text-center text-white">
         <h2 className="font-headline text-3xl">The Constellation of Our Dreams</h2>
         <p>Catch the falling wishes and weave them into a constellation of hope.</p>
-        <Progress value={(collectedStars / TOTAL_STARS) * 100} className="w-64 mt-4 bg-white/20" />
+        <Progress value={(collectedStars / TOTAL_STARS) * 100} className="w-full max-w-sm mt-4 bg-white/20 mx-auto" />
         <p className="mt-2 text-lg">{collectedStars} / {TOTAL_STARS} Stars</p>
       </div>
 

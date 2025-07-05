@@ -50,15 +50,18 @@ export default function Game() {
     }
   }, [isMuted, scene, audio]);
 
+  const handleStart = () => {
+    playSound('click.mp3');
+    if (audio && !isMuted) {
+      audio.play().catch(error => console.error("Audio play failed:", error));
+    }
+    setScene('garden');
+  };
+
   const renderScene = () => {
     switch (scene) {
       case 'intro':
-        return (
-          <Intro onStart={() => {
-            playSound('click.mp3');
-            setScene('garden');
-          }} />
-        );
+        return <Intro onStart={handleStart} />;
       case 'garden':
         return <GardenScene onComplete={() => setScene('trail')} playSound={playSound} />;
       case 'trail':
@@ -68,7 +71,7 @@ export default function Game() {
       case 'final':
         return <FinalScene onRestart={() => setScene('intro')} />;
       default:
-        return <Intro onStart={() => setScene('garden')} />;
+        return <Intro onStart={handleStart} />;
     }
   };
 

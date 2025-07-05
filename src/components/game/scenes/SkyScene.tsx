@@ -72,12 +72,12 @@ export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
             className="absolute cursor-pointer"
             initial={{ top: '-10%', left: `${star.x}%` }}
             animate={{ top: '110%' }}
-            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, scale: 1.5, transition: { duration: 0.3, ease: 'easeOut' } }}
             transition={{ duration: star.duration, delay: star.delay, ease: 'linear' }}
-            onMouseDown={() => handleStarClick(star.id)}
+            onClick={() => handleStarClick(star.id)}
             style={{ zIndex: 5 }}
           >
-            <Star className="w-10 h-10 text-yellow-300 fill-yellow-300" style={{ filter: 'drop-shadow(0 0 5px #fff)'}} />
+            <Star className="w-10 h-10 text-yellow-300 fill-yellow-300" style={{ filter: 'drop-shadow(0 0 8px #fff)'}} />
           </motion.div>
         ))}
       </AnimatePresence>

@@ -25,7 +25,11 @@ const collectibles = [
   },
   {
     id: 'flower',
-    render: (props: any) => <Flower {...props} />,
+    render: (props: any) => (
+       <motion.div animate={{ scale: [1, 1.05, 1], rotate: [0, 3, -3, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+        <Flower {...props} />
+      </motion.div>
+    ),
     pos: { x: '50%', y: '50%' },
     message: {
       title: 'The Bloom of Support',
@@ -36,7 +40,11 @@ const collectibles = [
   },
   {
     id: 'sparkles',
-    render: (props: any) => <Sparkles {...props} />,
+    render: (props: any) => (
+       <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+        <Sparkles {...props} />
+      </motion.div>
+    ),
     pos: { x: '80%', y: '60%' },
     message: {
       title: 'A Shard of Your Starlight',
@@ -95,7 +103,7 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 + index * 0.2, type: 'spring' }}
-              whileHover={{ scale: isCollected ? 1 : 1.1, rotate: isCollected ? 0 : (index % 2 === 0 ? -3 : 3) }}
+              whileHover={{ scale: isCollected ? 1 : 1.1 }}
               onClick={() => handleInteraction(item)}
             >
               {item.render({
@@ -115,7 +123,7 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
           <Button onClick={handleNext} size="lg" className="font-bold">
-            Follow the Giggling Path <Sparkles className="ml-2" />
+            Follow the Unforgettable Path <Sparkles className="ml-2" />
           </Button>
         </motion.div>
       )}

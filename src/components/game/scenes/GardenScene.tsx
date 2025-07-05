@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, MessageSquareHeart } from 'lucide-react';
+import { ArrowRight, MessageSquareHeart, Loader2 } from 'lucide-react';
 import WhimsicalCat from '../WhimsicalCat';
 import Image from 'next/image';
+import { getHyunImage } from '@/app/actions';
 
 const hints = [
   "Psst... I have a secret message for Nooni.",
@@ -22,7 +23,27 @@ type GardenSceneProps = {
 
 export default function GardenScene({ onComplete }: GardenSceneProps) {
   const [clickCount, setClickCount] = useState(0);
+  const [hyunImage, setHyunImage] = useState<string | null>(null);
+  const [isLoadingImage, setIsLoadingImage] = useState(false);
+  
   const isComplete = clickCount >= hints.length - 1;
+
+  useEffect(() => {
+    if (isComplete && !hyunImage && !isLoadingImage) {
+      setIsLoadingImage(true);
+      getHyunImage().then(response => {
+        if (response.success && response.data) {
+          setHyunImage(response.data);
+        } else {
+          // Keep a placeholder if generation fails, to avoid breaking the UI
+          console.error(response.error);
+          setHyunImage("https://placehold.co/200x200.png");
+        }
+        setIsLoadingImage(false);
+      });
+    }
+  }, [isComplete, hyunImage, isLoadingImage]);
+
 
   const handleCatClick = () => {
     if (!isComplete) {
@@ -87,15 +108,18 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
             className="flex flex-col items-center gap-4 text-center"
           >
             <p className="text-2xl font-headline text-primary">It's Hyun!</p>
-            <div className="w-40 h-40 rounded-full overflow-hidden shadow-2xl border-4 border-primary">
-               <Image
-                src="https://placehold.co/200x200.png"
-                width={200}
-                height={200}
-                alt="A picture of Choi Seung-hyun smirking and winking"
-                data-ai-hint="man winking"
-                className="w-full h-full object-cover"
-              />
+            <div className="w-40 h-40 rounded-full overflow-hidden shadow-2xl border-4 border-primary flex items-center justify-center bg-secondary/50">
+               { isLoadingImage || !hyunImage ? (
+                  <Loader2 className="w-10 h-10 text-primary animate-spin" />
+               ) : (
+                 <Image
+                    src={hyunImage}
+                    width={200}
+                    height={200}
+                    alt="A picture of Choi Seung-hyun smirking and winking"
+                    className="w-full h-full object-cover"
+                />
+               )}
             </div>
             <p className="text-foreground/80 max-w-sm">You found the hidden treasure—a little reminder of one of your favorite things!</p>
           </motion.div>

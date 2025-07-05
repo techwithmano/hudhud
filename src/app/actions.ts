@@ -1,6 +1,7 @@
 'use server';
 
 import { generateMessageDraft } from '@/ai/flows/generate-message-draft';
+import { generateCharacterImage } from '@/ai/flows/generate-character-image';
 import { z } from 'zod';
 
 const ActionInputSchema = z.object({
@@ -38,6 +39,24 @@ export async function handleGenerateDraft(formData: FormData) {
     return {
       success: false,
       error: { _form: ['An unexpected error occurred. Please try again.'] },
+    };
+  }
+}
+
+export async function getHyunImage() {
+  try {
+    const result = await generateCharacterImage({
+      description: "A handsome Korean man with sharp features, a playful smirk, and winking one eye.",
+    });
+    return {
+      success: true,
+      data: result.imageDataUri,
+    };
+  } catch (error) {
+    console.error('AI image generation failed:', error);
+    return {
+      success: false,
+      error: 'Failed to generate image.',
     };
   }
 }

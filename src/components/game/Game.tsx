@@ -19,41 +19,61 @@ export default function Game() {
   const [scene, setScene] = useState<Scene>('intro');
   const [isMuted, setIsMuted] = useState(true);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [isAudioReady, setIsAudioReady] = useState(false);
 
   const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
     if (isMuted) return;
     const sound = new Audio(`/${soundFile}`);
     sound.volume = volume;
-    sound.play().catch(error => console.error(`Failed to play sound: ${soundFile}`, error));
+    sound.onerror = () => {
+      console.error(`Could not load sound: /${soundFile}. Make sure the file exists in the 'public' folder.`);
+    };
+    sound.play().catch(error => console.error(`Could not play sound: ${soundFile}.`, error));
   }, [isMuted]);
 
 
   useEffect(() => {
-    // Lazy load audio only on the client
-    const bgMusic = new Audio('/aeao.mp3');
+    // Lazy load audio only on the client.
+    const bgMusic = new Audio();
+    bgMusic.src = '/aeao.mp3';
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
+
+    const handleCanPlay = () => {
+      setIsAudioReady(true);
+    };
+
+    const handleError = () => {
+      console.error("Failed to load background music. Make sure 'aeao.mp3' is in the 'public' folder and is a supported audio format.");
+      setIsAudioReady(false);
+    };
+
+    bgMusic.addEventListener('canplaythrough', handleCanPlay);
+    bgMusic.addEventListener('error', handleError);
+
     setAudio(bgMusic);
 
     return () => {
       bgMusic.pause();
+      bgMusic.removeEventListener('canplaythrough', handleCanPlay);
+      bgMusic.removeEventListener('error', handleError);
     };
   }, []);
 
   useEffect(() => {
-    if (audio) {
+    if (audio && isAudioReady) {
       if (!isMuted && scene !== 'intro') {
         audio.play().catch(error => console.error("Audio play failed:", error));
       } else {
         audio.pause();
       }
     }
-  }, [isMuted, scene, audio]);
+  }, [isMuted, scene, audio, isAudioReady]);
 
   const handleStart = () => {
     playSound('click.mp3');
-    if (audio && !isMuted) {
-      audio.play().catch(error => console.error("Audio play failed:", error));
+    if (audio && isAudioReady && !isMuted) {
+      audio.play().catch(error => console.error("Audio play failed on start:", error));
     }
     setScene('garden');
   };

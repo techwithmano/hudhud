@@ -12,15 +12,15 @@ type GardenSceneProps = {
 };
 
 const characters = [
-  { id: 'hyun', name: 'The One', isTarget: true, image: 'https://placehold.co/100x100/fde047/1c1917.png', 'data-ai-hint': 'korean man' },
-  { id: 'p1', name: 'Person 1', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'blonde woman' },
-  { id: 'p2', name: 'Person 2', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'man glasses' },
-  { id: 'p3', name: 'Person 3', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'redhead woman' },
-  { id: 'p4', name: 'Person 4', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'purple hair' },
-  { id: 'p5', name: 'Person 5', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'elderly woman' },
-  { id: 'p6', name: 'Person 6', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'woman braids' },
-  { id: 'p7', name: 'Person 7', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'stylish man' },
-  { id: 'p8', name: 'Person 8', isTarget: false, image: 'https://placehold.co/100x100.png', 'data-ai-hint': 'silver hair' },
+  { id: 'hyun', name: 'The One', isTarget: true, image: 'https://placehold.co/100x100/fde047/1c1917.png' },
+  { id: 'p1', name: 'Person 1', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p2', name: 'Person 2', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p3', name: 'Person 3', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p4', name: 'Person 4', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p5', name: 'Person 5', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p6', name: 'Person 6', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p7', name: 'Person 7', isTarget: false, image: 'https://placehold.co/100x100.png' },
+  { id: 'p8', name: 'Person 8', isTarget: false, image: 'https://placehold.co/100x100.png' },
 ];
 
 const hints = [
@@ -72,12 +72,20 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
     onComplete();
   };
   
-  const incorrectAnimation = {
+  const faceVariants = {
+    initial: { opacity: 0, scale: 0.5 },
+    animate: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: { delay: 0.2 + index * 0.05, type: 'spring' }
+    }),
     shake: {
       x: [0, -5, 5, -5, 5, 0],
       transition: { duration: 0.3 }
     }
   };
+
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-green-100 to-lime-100">
@@ -103,13 +111,13 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
             {faces.map((face, index) => (
               <motion.div
                 key={face.id}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1, ...((incorrectClickId === face.id) && incorrectAnimation.shake) }}
-                transition={{ delay: 0.2 + index * 0.05, type: 'spring' }}
+                custom={index}
+                variants={faceVariants}
+                initial="initial"
+                animate={incorrectClickId === face.id ? 'shake' : 'animate'}
                 whileHover={{ scale: isFound ? 1 : 1.1, zIndex: 2 }}
                 className="cursor-pointer"
                 onClick={() => handleFaceClick(face)}
-                data-ai-hint={face['data-ai-hint']}
               >
                 <Image
                   src={face.image}

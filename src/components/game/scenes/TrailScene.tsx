@@ -8,7 +8,6 @@ import { Heart, Lock, Unlock, Sparkles } from 'lucide-react';
 
 type TrailSceneProps = {
   onComplete: () => void;
-  playSound: (soundFile: string, volume?: number) => void;
 };
 
 const memories = [
@@ -18,7 +17,7 @@ const memories = [
   { id: 4, title: "A Sky of Promises", content: "For all the adventures that still await us. This isn't the end of the path, just the beginning of our next beautiful chapter." },
 ];
 
-export default function TrailScene({ onComplete, playSound }: TrailSceneProps) {
+export default function TrailScene({ onComplete }: TrailSceneProps) {
   const [unlockedCount, setUnlockedCount] = useState(1);
   const memoryRefs = useRef<(HTMLDivElement | null)[]>([]);
 

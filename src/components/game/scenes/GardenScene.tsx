@@ -18,10 +18,9 @@ const hints = [
 
 type GardenSceneProps = {
   onComplete: () => void;
-  playSound: (soundFile: string, volume?: number) => void;
 };
 
-export default function GardenScene({ onComplete, playSound }: GardenSceneProps) {
+export default function GardenScene({ onComplete }: GardenSceneProps) {
   const [clickCount, setClickCount] = useState(0);
   const isComplete = clickCount >= hints.length - 1;
 
@@ -29,10 +28,6 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
     if (!isComplete) {
       const newClickCount = clickCount + 1;
       setClickCount(newClickCount);
-      playSound('click.mp3', 0.3);
-      if (newClickCount >= hints.length -1) {
-        playSound('collect.mp3', 0.5);
-      }
     }
   };
 

@@ -7,8 +7,6 @@ import { Heart, MessageCircle, Sparkles } from 'lucide-react';
 
 type ConnectSceneProps = {
   onComplete: () => void;
-  // This prop might be passed but it's not used to avoid errors with missing files.
-  playSound?: (soundFile: string, volume?: number) => void;
 };
 
 const points = [

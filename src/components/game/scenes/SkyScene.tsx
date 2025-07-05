@@ -7,7 +7,6 @@ import { Progress } from '@/components/ui/progress';
 
 type SkySceneProps = {
   onComplete: () => void;
-  playSound: (soundFile: string, volume?: number) => void;
 };
 
 const TOTAL_STARS = 10;
@@ -19,7 +18,7 @@ interface FallingStar {
   delay: number;
 }
 
-export default function SkyScene({ onComplete, playSound }: SkySceneProps) {
+export default function SkyScene({ onComplete }: SkySceneProps) {
   const [collectedStars, setCollectedStars] = useState(0);
   const [stars, setStars] = useState<FallingStar[]>([]);
 

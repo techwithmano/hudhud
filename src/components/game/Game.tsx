@@ -21,22 +21,6 @@ export default function Game() {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [isAudioReady, setIsAudioReady] = useState(false);
 
-  const playSound = useCallback((soundFile: string, volume: number = 0.5) => {
-    if (isMuted) return;
-    try {
-      const sound = new Audio(`/${soundFile}`);
-      sound.volume = volume;
-      sound.play().catch(error => {
-        // This can happen if the user hasn't interacted with the page yet.
-        // Or if the file is missing. We'll log it but not crash.
-        console.error(`Could not play sound ${soundFile}:`, error);
-      });
-    } catch (error) {
-        console.error(`Error playing sound ${soundFile}:`, error);
-    }
-  }, [isMuted]);
-
-
   useEffect(() => {
     // Lazy load audio only on the client.
     const bgMusic = new Audio();
@@ -85,13 +69,13 @@ export default function Game() {
       case 'intro':
         return <Intro onStart={handleStart} />;
       case 'garden':
-        return <GardenScene onComplete={() => setScene('trail')} playSound={playSound} />;
+        return <GardenScene onComplete={() => setScene('trail')} />;
       case 'trail':
-        return <TrailScene onComplete={() => setScene('connect')} playSound={playSound} />;
+        return <TrailScene onComplete={() => setScene('connect')} />;
       case 'connect':
-        return <ConnectScene onComplete={() => setScene('sky')} playSound={playSound} />;
+        return <ConnectScene onComplete={() => setScene('sky')} />;
       case 'sky':
-        return <SkyScene onComplete={() => setScene('final')} playSound={playSound} />;
+        return <SkyScene onComplete={() => setScene('final')} />;
       case 'final':
         return <FinalScene onRestart={() => setScene('intro')} />;
       default:

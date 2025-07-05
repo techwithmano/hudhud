@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '../ui/button';
@@ -18,49 +18,53 @@ type Scene = 'intro' | 'garden' | 'trail' | 'connect' | 'sky' | 'final';
 export default function Game() {
   const [scene, setScene] = useState<Scene>('intro');
   const [isMuted, setIsMuted] = useState(true);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [isAudioReady, setIsAudioReady] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Lazy load audio only on the client.
-    const bgMusic = new Audio();
-    bgMusic.src = '/aeao.mp3';
-    bgMusic.loop = true;
-    bgMusic.volume = 0.3;
+    // Initialize audio on the client
+    audioRef.current = new Audio('/aeao.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.3;
 
-    const handleCanPlay = () => {
-      setIsAudioReady(true);
-    };
-
+    const audio = audioRef.current;
     const handleError = () => {
-      console.error("Failed to load background music. Make sure 'aeao.mp3' is in the 'public' folder and is a supported audio format.");
-      setIsAudioReady(false);
+      console.error("Failed to load background music. Make sure 'aeao.mp3' is in the 'public' folder.");
     };
-
-    bgMusic.addEventListener('canplaythrough', handleCanPlay);
-    bgMusic.addEventListener('error', handleError);
-
-    setAudio(bgMusic);
+    audio.addEventListener('error', handleError);
 
     return () => {
-      bgMusic.pause();
-      bgMusic.removeEventListener('canplaythrough', handleCanPlay);
-      bgMusic.removeEventListener('error', handleError);
+      audio?.pause();
+      audio?.removeEventListener('error', handleError);
     };
   }, []);
 
-  useEffect(() => {
-    if (audio && isAudioReady) {
-      if (!isMuted && scene !== 'intro') {
-        audio.play().catch(error => console.error("Audio play failed:", error));
-      } else {
-        audio.pause();
+  const toggleMute = () => {
+    setIsMuted(prevMuted => {
+      const newMuted = !prevMuted;
+      if (audioRef.current) {
+        if (newMuted) {
+          audioRef.current.pause();
+        } else {
+           if(scene !== 'intro') {
+             audioRef.current.play().catch(e => console.error("Audio play failed:", e));
+           }
+        }
       }
-    }
-  }, [isMuted, scene, audio, isAudioReady]);
+      return newMuted;
+    });
+  };
 
   const handleStart = () => {
-    setIsMuted(false); 
+    if (audioRef.current) {
+        // This is the crucial part for mobile browser autoplay policies
+        audioRef.current.play().then(() => {
+            setIsMuted(false);
+        }).catch(error => {
+            console.error("Audio play failed on start:", error);
+            // If autoplay fails, we keep it muted. The user can unmute manually.
+            setIsMuted(true);
+        });
+    }
     setScene('garden');
   };
 
@@ -86,7 +90,7 @@ export default function Game() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-secondary/40 to-background font-body">
        <button 
-        onClick={() => setIsMuted(!isMuted)} 
+        onClick={toggleMute} 
         className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/30 backdrop-blur-sm text-primary hover:bg-white/50 transition-colors"
         aria-label={isMuted ? "Unmute sound" : "Mute sound"}
       >

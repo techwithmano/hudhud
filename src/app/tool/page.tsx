@@ -16,7 +16,7 @@ export default function MessageToolPage() {
         </Button>
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline text-3xl">AI Message Helper</CardTitle>
+            <CardTitle className="font-headline text-2xl md:text-3xl">AI Message Helper</CardTitle>
             <CardDescription>
              Struggling to find the right words? Let our AI helper use your shared memories to write a sweet message for Nooni.
             </CardDescription>

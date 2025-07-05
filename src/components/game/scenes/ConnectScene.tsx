@@ -33,17 +33,17 @@ export default function ConnectScene({ onComplete }: ConnectSceneProps) {
   const allConnected = connected.length === points.length;
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200">
+    <div className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-rose-100 to-pink-200 p-4">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
         className="absolute top-10 left-1/2 -translate-x-1/2 text-center z-10"
       >
-        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline">
+        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-base sm:text-lg font-headline">
           Our Constellation
         </p>
-        <p className="mt-2 text-foreground/80 text-sm">
+        <p className="mt-2 text-foreground/80 text-xs sm:text-sm">
           Connect the dots to see our story.
         </p>
       </motion.div>
@@ -126,7 +126,7 @@ export default function ConnectScene({ onComplete }: ConnectSceneProps) {
             className="absolute bottom-24 z-20 bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-md flex items-center gap-2"
         >
             <MessageCircle className="w-5 h-5 text-primary" />
-            <p className="text-foreground">{activeMessage}</p>
+            <p className="text-foreground text-sm">{activeMessage}</p>
         </motion.div>
       )}
       </AnimatePresence>
@@ -139,7 +139,7 @@ export default function ConnectScene({ onComplete }: ConnectSceneProps) {
           transition={{ delay: 0.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
         >
-          <p className="text-white text-2xl font-headline bg-primary/70 p-3 rounded-md">You found the heart of our story!</p>
+          <p className="text-white text-xl sm:text-2xl font-headline bg-primary/70 p-3 rounded-md">You found the heart of our story!</p>
           <Button onClick={onComplete} size="lg" className="font-bold">
             Make a Wish <Sparkles className="ml-2" />
           </Button>

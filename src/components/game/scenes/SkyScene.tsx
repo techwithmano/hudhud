@@ -16,6 +16,7 @@ interface FallingStar {
   x: number;
   duration: number;
   delay: number;
+  size: number;
 }
 
 export default function SkyScene({ onComplete }: SkySceneProps) {
@@ -32,11 +33,20 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
             x: Math.random() * 100,
             duration: Math.random() * 3 + 4,
             delay: Math.random() * 2,
+            size: Math.random() * 24 + 24, // star size between 24 and 48px
           },
         ]);
-      }, 1000);
+      }, 800); // More stars
 
-      return () => clearInterval(interval);
+      // Cleanup old stars
+      const cleanupInterval = setInterval(() => {
+        setStars(prev => prev.slice(-50));
+      }, 5000)
+
+      return () => {
+        clearInterval(interval);
+        clearInterval(cleanupInterval);
+      }
     }
   }, [collectedStars]);
 
@@ -56,10 +66,10 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
   return (
     <div className="relative w-full h-full overflow-hidden bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
       <div className="absolute top-10 inset-x-0 z-10 px-4 text-center text-white">
-        <h2 className="font-headline text-3xl">A Sky Full of Dreams</h2>
-        <p>Catch the falling stars to make a wish.</p>
+        <h2 className="font-headline text-2xl sm:text-3xl">A Sky Full of Dreams</h2>
+        <p className="text-sm sm:text-base">Catch the falling stars to make a wish.</p>
         <Progress value={(collectedStars / TOTAL_STARS) * 100} className="w-full max-w-sm mt-4 bg-white/20 mx-auto" />
-        <p className="mt-2 text-lg">{collectedStars} / {TOTAL_STARS} Stars</p>
+        <p className="mt-2 text-base sm:text-lg">{collectedStars} / {TOTAL_STARS} Stars</p>
       </div>
 
       <AnimatePresence>
@@ -74,7 +84,7 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
             onClick={() => handleStarClick(star.id)}
             style={{ zIndex: 5 }}
           >
-            <Star className="w-10 h-10 text-yellow-300 fill-yellow-300" style={{ filter: 'drop-shadow(0 0 8px #fff)'}} />
+            <Star className="text-yellow-300 fill-yellow-300" style={{ filter: 'drop-shadow(0 0 8px #fff)', width: star.size, height: star.size }} />
           </motion.div>
         ))}
       </AnimatePresence>
@@ -83,9 +93,9 @@ export default function SkyScene({ onComplete }: SkySceneProps) {
          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 text-center px-4"
         >
-            <p className="text-white text-2xl font-headline">The stars heard you! The sky is full of wishes.</p>
+            <p className="text-white text-xl sm:text-2xl font-headline">The stars heard you! The sky is full of wishes.</p>
             <Button onClick={handleNext} size="lg" className="font-bold bg-yellow-400 hover:bg-yellow-500 text-blue-900">
                 Read Your Special Note
             </Button>

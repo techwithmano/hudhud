@@ -42,12 +42,12 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-10 text-center z-10"
+        className="absolute top-10 text-center z-10 px-4"
       >
-        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-lg font-headline">
+        <p className="text-primary-foreground bg-primary/70 p-2 rounded-md shadow-lg text-base md:text-lg font-headline">
           A Little Messenger is Here
         </p>
-        <p className="mt-2 text-foreground/80 text-sm">
+        <p className="mt-2 text-foreground/80 text-sm md:text-base">
           This little friend has a secret for you. Click on it!
         </p>
       </motion.div>
@@ -67,13 +67,13 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
                 initial={{ opacity: 0, y: 20, scale: 0.5 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
-                className="absolute -top-20 right-[-10rem] bg-white p-3 rounded-lg shadow-lg w-48 text-center"
+                className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 bg-white p-3 rounded-lg shadow-lg w-full max-w-[200px] text-center"
               >
                 <MessageSquareHeart className="inline-block w-5 h-5 text-secondary mb-1" />
                 <p className="text-foreground text-sm">
                   {hints[clickCount]}
                 </p>
-                 <div className="absolute left-4 -bottom-2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white"></div>
+                 <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white"></div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -87,7 +87,7 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
             animate={{ opacity: 1, scale: 1, transition: { delay: 0.2, type: 'spring' } }}
             className="flex flex-col items-center gap-4 text-center"
           >
-            <p className="text-2xl font-headline text-primary">It's Hyun!</p>
+            <p className="text-xl md:text-2xl font-headline text-primary">It's Hyun!</p>
             <div className="w-40 h-40 rounded-full overflow-hidden shadow-2xl border-4 border-primary flex items-center justify-center bg-secondary/50">
                <Image
                   src="/hyun.png"
@@ -97,7 +97,7 @@ export default function GardenScene({ onComplete }: GardenSceneProps) {
                   className="w-full h-full object-cover"
               />
             </div>
-            <p className="text-foreground/80 max-w-sm">You found the hidden treasure! A little reminder of someone you like!</p>
+            <p className="text-foreground/80 max-w-sm text-sm md:text-base">You found the hidden treasure! A little reminder of someone you like!</p>
           </motion.div>
         )}
         </AnimatePresence>

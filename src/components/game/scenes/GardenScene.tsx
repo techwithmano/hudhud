@@ -48,7 +48,6 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
   const [hintIndex, setHintIndex] = useState(0);
 
   useEffect(() => {
-    // Shuffle the array on the client to avoid hydration mismatch
     setFaces(shuffleArray(characters));
   }, []);
 
@@ -108,30 +107,38 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
 
       <div className="w-full max-w-3xl p-4">
         <div className="flex flex-wrap justify-center items-center gap-4">
-            {faces.map((face, index) => (
-              <motion.div
-                key={face.id}
-                custom={index}
-                variants={faceVariants}
-                initial="initial"
-                animate={incorrectClickId === face.id ? 'shake' : 'animate'}
-                whileHover={{ scale: isFound ? 1 : 1.1, zIndex: 2 }}
-                className="cursor-pointer"
-                onClick={() => handleFaceClick(face)}
-              >
-                <Image
-                  src={face.image}
-                  alt={face.name}
-                  width={100}
-                  height={100}
-                  className={cn(
-                    'rounded-full border-4 transition-all duration-300',
-                    isFound && face.isTarget ? 'border-green-400 shadow-2xl scale-110 ring-4 ring-yellow-300' : 'border-white/50',
-                    isFound && !face.isTarget ? 'opacity-30' : 'opacity-100'
-                  )}
-                />
-              </motion.div>
-            ))}
+            {faces.map((face, index) => {
+                const imageClasses = cn(
+                  'rounded-full border-4 transition-all duration-300',
+                  {
+                    'border-green-400 shadow-2xl scale-110 ring-4 ring-yellow-300': isFound && face.isTarget,
+                    'border-white/50': !(isFound && face.isTarget),
+                    'opacity-30': isFound && !face.isTarget,
+                    'opacity-100': !isFound || face.isTarget,
+                  }
+                );
+                
+                return (
+                  <motion.div
+                    key={face.id}
+                    custom={index}
+                    variants={faceVariants}
+                    initial="initial"
+                    animate={incorrectClickId === face.id ? 'shake' : 'animate'}
+                    whileHover={{ scale: isFound ? 1 : 1.1, zIndex: 2 }}
+                    className="cursor-pointer"
+                    onClick={() => handleFaceClick(face)}
+                  >
+                    <Image
+                      src={face.image}
+                      alt={face.name}
+                      width={100}
+                      height={100}
+                      className={imageClasses}
+                    />
+                  </motion.div>
+                );
+            })}
         </div>
       </div>
       
@@ -154,7 +161,7 @@ export default function GardenScene({ onComplete, playSound }: GardenSceneProps)
             <DialogTitle className="font-headline text-2xl text-primary">You Found The One!</DialogTitle>
             <DialogDescription className="text-foreground pt-4 text-base">
               Of course, you found them! Your eyes are always drawn to the things that shine. It reminds me of how I feel so lucky to have found a friend as bright and wonderful as you.
-            </dDialogDescription>
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
